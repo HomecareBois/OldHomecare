@@ -148,10 +148,62 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\Address.cs">
+      <DependentUpon>HomecareDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\Caretaker.cs">
+      <DependentUpon>HomecareDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\City.cs">
+      <DependentUpon>HomecareDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\HomecareDB.Context.cs" />
+    <Compile Include="Models\DataModels\HomecareDB.cs" />
+    <Compile Include="Models\DataModels\HomecareDB.Designer.cs">
+      <DependentUpon>HomecareDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\HomecareDB1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomecareDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\HomecareDB1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomecareDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\Login.cs">
+      <DependentUpon>HomecareDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\Occupation.cs">
+      <DependentUpon>HomecareDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\Patient.cs">
+      <DependentUpon>HomecareDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\Phone.cs">
+      <DependentUpon>HomecareDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\Route.cs">
+      <DependentUpon>HomecareDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\Schedule.cs">
+      <DependentUpon>HomecareDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\Staff.cs">
+      <DependentUpon>HomecareDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\sysdiagram.cs">
+      <DependentUpon>HomecareDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataModels\User_Rights.cs">
+      <DependentUpon>HomecareDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -162,10 +214,21 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\DataModels\HomecareDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>HomecareDB1.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="Models\DataModels\HomecareDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HomecareDB1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DataModels\HomecareDB.edmx.diagram">
+      <DependentUpon>HomecareDB.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -195,7 +258,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\City\" />
     <Folder Include="Views\Patient\" />
   </ItemGroup>
   <ItemGroup>
@@ -210,6 +273,9 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

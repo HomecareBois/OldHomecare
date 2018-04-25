@@ -19,12 +19,12 @@ namespace Homecare.Models.DataModels
             : base("name=HomecareDBEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Caretaker> Caretakers { get; set; }
         public virtual DbSet<City> Cities { get; set; }
