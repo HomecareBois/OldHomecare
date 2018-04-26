@@ -14,6 +14,7 @@ namespace Homecare.Models.DataModels
     
     public partial class Patient
     {
+
         public int id_patient { get; set; }
         public string patient_name { get; set; }
         public string cpr { get; set; }

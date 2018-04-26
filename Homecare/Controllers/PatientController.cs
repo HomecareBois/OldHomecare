@@ -16,6 +16,16 @@ namespace Homecare.Controllers
             return View();
         }
 
+        public ActionResult PatientList ()
+        {
+            using (HomecareDBEntities db = new HomecareDBEntities())
+            {
+                return View(db.Patients.ToList());
+            }
+        }
+
+        
+
         public ActionResult CreatePatient()
         {
             return View();
@@ -76,8 +86,8 @@ namespace Homecare.Controllers
                     db.SaveChanges();
                 }
                 ModelState.Clear();
+                ViewBag.Message = inputData.name + " was created";
             }
-
             return View();
         }
     }
