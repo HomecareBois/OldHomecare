@@ -55,7 +55,22 @@ namespace Homecare.Controllers
 
                     db.Phones.Add(phonenumber);
                     db.SaveChanges();
+
+                    var loginID = db.Logins.FirstOrDefault(login => login.username == inputData.username).id_login;
+                    var phoneID = db.Phones.FirstOrDefault(phone => phone.phone_number == inputData.phonenumber).id_phone;
+
+
+                    var caretaker = new Caretaker
+                    {
+                        caretaker_name = inputData.name,
+                        fk_login_caretaker = loginID,
+                        fk_phone_caretaker = phoneID
+                    };
+
+                    db.Caretakers.Add(caretaker);
+                    db.SaveChanges();
                 }
+                
 
                 ModelState.Clear();
                 ViewBag.Message = inputData.name + " was created";
