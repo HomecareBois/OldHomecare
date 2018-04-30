@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Homecare.Models.DataModels;
@@ -10,12 +12,6 @@ namespace Homecare.Controllers
 {
     public class PatientController : Controller
     {
-        // GET: Patient
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public ActionResult CreatePatient()
         {
             return View();
@@ -37,16 +33,13 @@ namespace Homecare.Controllers
                     db.Cities.Add(c);
                     db.SaveChanges();
 
-                    var cityId = db.Cities.FirstOrDefault(ci => ci.city_name == inputData.cityName).id_city;
-
                     var phone = new Phone
                     {
                         phone_number = inputData.phonenumber,
                     };
                     db.Phones.Add(phone);
-                    db.SaveChanges();
 
-                    var phoneId = db.Phones.FirstOrDefault(pi => pi.phone_number == inputData.phonenumber).id_phone;
+                    var cityId = db.Cities.FirstOrDefault(ci => ci.city_name == inputData.cityName).id_city;
 
                     var address = new Address
                     {
@@ -63,6 +56,7 @@ namespace Homecare.Controllers
                         ai.number == inputData.number)
                         .id_address;
 
+                    var phoneId = db.Phones.FirstOrDefault(pi => pi.phone_number == inputData.phonenumber).id_phone;
                     var p = new Patient
                     {
                         patient_name = inputData.name,
@@ -76,9 +70,150 @@ namespace Homecare.Controllers
                     db.SaveChanges();
                 }
                 ModelState.Clear();
+                ViewBag.Message = inputData.name + " was created";
+            }
+            return View();
+        }
+
+        public ActionResult PatientList ()
+        {
+            using (HomecareDBEntities db = new HomecareDBEntities())
+            {
+                return View(db.Patients.ToList());
+            }
+        }
+
+        public ActionResult PatientDetails (int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
+            HomecareDBEntities db = new HomecareDBEntities();
+            Patient patient = db.Patients.Find(id);
+            if (patient == null)
+            {
+                return HttpNotFound();
+            }
+
+            Address address = db.Addresses.Find(patient.fk_address_patient);
+            Phone phone = db.Phones.Find(patient.fk_phone_patient);
+            City city = db.Cities.Find(address.fk_city_address);
+
+            PatientViewModel pvm = new PatientViewModel
+            {
+                name = patient.patient_name,
+                cpr = patient.cpr,
+                relativePhonenumber = patient.relative_phonenumber,
+                roadname = address.road_name,
+                number = address.number,
+                cityName = city.city_name,
+                zipCode = city.zipcode,
+                phonenumber = phone.phone_number,
+            };
+            return View(pvm);
+        }
+
+        public ActionResult EditPatient (int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            HomecareDBEntities db = new HomecareDBEntities();
+            Patient patient = db.Patients.Find(id);
+
+            if (patient == null)
+            {
+                return HttpNotFound();
+            }
+
+            Address address = db.Addresses.Find(patient.fk_address_patient);
+            Phone phone = db.Phones.Find(patient.fk_phone_patient);
+            City city = db.Cities.Find(address.fk_city_address);
+
+            PatientViewModel pvm = new PatientViewModel
+            {
+                name = patient.patient_name,
+                cpr = patient.cpr,
+                relativePhonenumber = patient.relative_phonenumber,
+                roadname = address.road_name,
+                number = address.number,
+                cityName = city.city_name,
+                zipCode = city.zipcode,
+                phonenumber = phone.phone_number,
+            };
+
+            return View(pvm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditPatient (PatientViewModel pvm)
+        {
+            if (ModelState.IsValid)
+            {
+                HomecareDBEntities db = new HomecareDBEntities();
+                db.SaveChanges();
+
+                return RedirectToAction("PatientList");
+            }
             return View();
+        }
+
+        public ActionResult DeletePatient (int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            HomecareDBEntities db = new HomecareDBEntities();
+            Patient patient = db.Patients.Find(id);
+
+            if (patient == null)
+            {
+                return HttpNotFound();
+            }
+
+            Address address = db.Addresses.Find(patient.fk_address_patient);
+            Phone phone = db.Phones.Find(patient.fk_phone_patient);
+            City city = db.Cities.Find(address.fk_city_address);
+
+            PatientViewModel pvm = new PatientViewModel
+            {
+                name = patient.patient_name,
+                cpr = patient.cpr,
+                relativePhonenumber = patient.relative_phonenumber,
+                roadname = address.road_name,
+                number = address.number,
+                cityName = city.city_name,
+                zipCode = city.zipcode,
+                phonenumber = phone.phone_number,
+            };
+
+            return View(pvm);
+        }
+
+        [HttpPost, ActionName("DeletePatient")]
+        public ActionResult DeletePatient (int id)
+        {
+            HomecareDBEntities db = new HomecareDBEntities();
+
+            Patient patient = db.Patients.Find(id);
+            Address address = db.Addresses.Find(patient.fk_address_patient);
+            City city = db.Cities.Find(address.fk_city_address);
+            Phone phone = db.Phones.Find(patient.fk_phone_patient);
+
+            db.Patients.Remove(patient);
+            db.Addresses.Remove(address);
+            //db.Cities.Remove(city);
+            db.Phones.Remove(phone);
+            db.SaveChanges();
+
+            return RedirectToAction("PatientList");
         }
     }
 }
