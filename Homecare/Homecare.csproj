@@ -267,6 +267,7 @@
     <Content Include="Views\Patient\PatientDetails.cshtml" />
     <Content Include="Views\Patient\EditPatient.cshtml" />
     <Content Include="Views\Patient\DeletePatient.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
