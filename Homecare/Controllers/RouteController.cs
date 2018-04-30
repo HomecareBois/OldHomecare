@@ -46,5 +46,11 @@ namespace Homecare.Controllers
 
             return View();
         }
+
+        public ActionResult ViewRoute()
+        {
+            return View();
+        }
+
     }
 }
