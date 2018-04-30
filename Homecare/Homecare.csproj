@@ -206,6 +206,7 @@
       <DependentUpon>HomecareDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\CaretakerViewModel.cs" />
+    <Compile Include="Models\ViewModels\PatientParentViewcs.cs" />
     <Compile Include="Models\ViewModels\PatientViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -256,9 +257,13 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Patient\CreatePatient.cshtml" />
     <Content Include="Views\Caretaker\CreateCaretaker.cshtml" />
+    <Content Include="Views\Patient\PatientList.cshtml" />
+    <Content Include="Views\Patient\Index.cshtml" />
+    <Content Include="Views\Patient\PatientDetails.cshtml" />
+    <Content Include="Views\Patient\EditPatient.cshtml" />
+    <Content Include="Views\Patient\DeletePatient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
