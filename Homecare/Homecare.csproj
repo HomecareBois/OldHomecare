@@ -152,6 +152,7 @@
     <Compile Include="Controllers\CaretakerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\RouteController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -209,6 +210,7 @@
     <Compile Include="Models\ViewModels\CaretakerViewModel.cs" />
     <Compile Include="Models\ViewModels\PatientParentViewcs.cs" />
     <Compile Include="Models\ViewModels\PatientViewModel.cs" />
+    <Compile Include="Models\ViewModels\RouteViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -258,6 +260,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Patient\CreatePatient.cshtml" />
+    <Content Include="Views\Route\CreateRoute.cshtml" />
     <Content Include="Views\Caretaker\CreateCaretaker.cshtml" />
     <Content Include="Views\Patient\PatientList.cshtml" />
     <Content Include="Views\Patient\Index.cshtml" />
