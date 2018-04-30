@@ -11,14 +11,22 @@ namespace Homecare.Models.DataModels
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Patient
     {
 
         public int id_patient { get; set; }
+
+        [DisplayName("Navn")]
         public string patient_name { get; set; }
+
+        [DisplayName("CPR-nummer")]
         public string cpr { get; set; }
+
+        [DisplayName("Telefonnummer")]
         public string relative_phonenumber { get; set; }
+
         public int fk_address_patient { get; set; }
         public Nullable<int> fk_phone_patient { get; set; }
     

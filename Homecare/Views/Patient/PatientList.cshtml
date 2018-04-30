@@ -1,19 +1,12 @@
 ﻿@model IEnumerable<Homecare.Models.DataModels.Patient>
 
-@{
-    ViewBag.Title = "PatientList";
-}
-
-<h2>PatientList</h2>
+<h2>Patienter</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Opret Ny", "CreatePatient")
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.id_patient)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.patient_name)
         </th>
@@ -23,20 +16,11 @@
         <th>
             @Html.DisplayNameFor(model => model.relative_phonenumber)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fk_address_patient)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fk_phone_patient)
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.id_patient)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.patient_name)
         </td>
@@ -47,15 +31,9 @@
             @Html.DisplayFor(modelItem => item.relative_phonenumber)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.fk_address_patient)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fk_phone_patient)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Rediger", "EditPatient", new { id=item.id_patient}) |
+            @Html.ActionLink("Info", "PatientDetails", new { id = item.id_patient }) |
+            @Html.ActionLink("Slet", "DeletePatient", new { id=item.id_patient })
         </td>
     </tr>
 }
